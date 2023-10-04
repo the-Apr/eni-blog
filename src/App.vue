@@ -1,30 +1,66 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="">
+    <div class="app">
+      <navigation/>
+      <!-- <the-footer/> -->
+    <router-view/>
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Navigation from '@/components/Navigation.vue'
+import TheFooter from '@/components/Footer.vue'
+
+
+
+export default {
+  name: "app",
+  components: { 
+    Navigation,
+    TheFooter,
+  }
+
+}
+</script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
-nav {
-  padding: 30px;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.link-light {
+  color: #fff;
+}
+
+.arrow {
+  @apply ml-2 w-3;
+  path {
+    fill: #000;
+  }
+}
+
+.arrow-light {
+  path {
+    fill: #fff;
+  }
 }
 </style>
