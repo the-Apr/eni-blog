@@ -6,7 +6,12 @@ module.exports = {
       padding: '2rem',
       center: true
     },
-    extend: {},
+
+    extend: {
+      screens: {
+        'xs': '475px'
+      },
+    },
   },
   plugins: [],
 }

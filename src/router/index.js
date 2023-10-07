@@ -1,23 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router'
- import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView.vue'
+const BlogsView = () => import('../views/BlogsView.vue')
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Home',
+    component: HomeView,
+    meta: {
+      title: "Home"
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    
-    component: () => import('../views/AboutView.vue')
+    path: '/blogs',
+    name: 'BlogsView',
+    component: BlogsView,
+    meta: {
+      title: "Blogs"
+    }
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = `${to.meta.title} | EniBlogs`;
+  next();
 })
 
 export default router

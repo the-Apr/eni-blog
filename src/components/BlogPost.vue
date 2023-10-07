@@ -67,17 +67,17 @@ export default {
 
   .first-div{
     max-width: 375px;
-    padding: 72px 24px;
+    padding: 40px 24px;
 
     @screen md {
       padding: 0 24px;
     }
 
     h2{
-      @apply text-3xl font-light uppercase mb-4;
+      @apply text-xl font-light uppercase mb-4;
 
       @screen md {
-        font-size: 40px;
+        @apply text-2xl
       }
     }
 
@@ -125,7 +125,12 @@ export default {
   }
 
   img{
-    @apply block w-full h-full object-cover
+    @apply block w-full object-cover;
+    max-height: 250px;
+
+    @screen md {
+      @apply w-full max-h-full;
+    }
   }
 }
 
