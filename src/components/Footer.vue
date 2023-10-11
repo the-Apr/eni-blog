@@ -3,7 +3,7 @@
     <div class="container">
       <div class="left">
         <div class="col-1">
-          <router-link class="header" :to="{ name: 'home' }">FireBlogs</router-link>
+          <router-link class="header" :to="{ name: 'Home' }">EniBlogs</router-link>
           <ul>
             <li>
               <a href="#"><fa-icon :icon="['fab', 'youtube']" /></a>
@@ -22,10 +22,10 @@
         </div>
         <div class="col-2">
           <ul>
-            <!-- <router-link class="link" :to="{ name: 'home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+            <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
+            <router-link class="link" :to="{ name: 'BlogsView' }">Blogs</router-link>
             <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link> -->
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link>
           </ul>
         </div>
       </div>
@@ -68,7 +68,7 @@ footer {
       gap: 0px;
     }
 
-    > div {
+    div {
       display: flex;
       flex: 1;
     }

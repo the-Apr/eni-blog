@@ -127,9 +127,10 @@ export default {
   img{
     @apply block w-full object-cover;
     max-height: 250px;
+    
 
     @screen md {
-      @apply w-full max-h-full;
+      @apply w-full h-full max-h-full;
     }
   }
 }

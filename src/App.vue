@@ -1,9 +1,9 @@
 <template>
   <div class="">
     <div class="app">
-      <navigation/>
-      <!-- <the-footer/> -->
-    <router-view/>
+      <navigation v-if="!hideNav"/>
+      <router-view/>
+      <the-footer v-if="!hideNav"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,38 @@ export default {
   components: { 
     Navigation,
     TheFooter,
+  },
+
+  data () {
+    return {
+      hideNav: null,
+    }
+  },
+
+  created (){
+    this.checkRoute();
+  },
+
+  mounted() {},
+
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
+  },
+
+  methods: {
+    checkRoute() {
+      if (
+        this.$route.name === "Login" ||
+        this.$route.name === "Register" ||
+        this.$route.name === "ForgotPassword" 
+      ) {
+        this.hideNav = true;
+        return;
+      }
+      this.hideNav = false;
+    }
   }
 
 }

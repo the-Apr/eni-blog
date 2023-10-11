@@ -48,7 +48,7 @@ export default {
     right: 5px;
 
     @screen md{
-      top: -40px;
+      top: -70px;
       right: 30px;
     }
 
@@ -73,7 +73,7 @@ export default {
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
       @screen md{
-        height: 30px;
+        height: 26px;
         width: 80px;
       }
     }
@@ -92,8 +92,8 @@ export default {
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
       @screen md{
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
       }
     }
 

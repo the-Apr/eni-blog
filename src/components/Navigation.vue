@@ -2,14 +2,14 @@
 <header>
   <nav class="md:container">
     <div class="branding">
-      <router-link class="header" :to="{name: 'Home'}">EniBlogs</router-link>
+      <router-link class="link" :to="{name: 'Home'}">EniBlogs</router-link>
     </div>
     <div class="nav-links">
       <ul v-show="!mobile">
         <router-link class="link" :to="{name: 'Home'}">Home</router-link>
         <router-link class="link" :to="{name: 'BlogsView'}">Blogs</router-link>
-        <router-link class="link" to="#">Create Post</router-link>
-        <router-link class="link" to="#">Login/Register</router-link>
+        <router-link class="link" :to="{name: ''}">Create Post</router-link>
+        <router-link class="link" :to="{name: 'Login'}">Login/Register</router-link>
       </ul>
     </div>
   </nav>
@@ -25,7 +25,7 @@
         <router-link class="link" :to="{name: 'Home'}">Home</router-link>
         <router-link class="link" :to="{name: 'BlogsView'}">Blogs</router-link>
         <router-link class="link" to="#">Create Post</router-link>
-        <router-link class="link" to="#">Login/Register</router-link>
+        <router-link class="link" :to="{name: 'Login'}">Login/Register</router-link>
       </ul>
   </transition>
 </header> 
