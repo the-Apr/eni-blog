@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-wrapper no-user">
+  <div class="blog-wrapper" :class="{'no-user' : !user}">
     <div class="blog-content">
       <div class="first-div">
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
@@ -7,7 +7,7 @@
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else>{{ post.blogHTML }}</p>
         <a class="link link-light" v-if="post.welcomeScreen" to="#">
-          Login/Register<fa-icon class="arrow arrow-light" :icon="['fas', 'arrow-right']" />
+          Login/register<fa-icon class="arrow arrow-light" :icon="['fas', 'arrow-right']" />
         </a>
         <a class="link" v-else to="#">
           View The Post<fa-icon class="arrow" :icon="['fas', 'arrow-right']" />
@@ -26,7 +26,13 @@
 export default {
   name: "blogPost",
 
-  props: ['post']
+  props: ['post'],
+
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  }
 }
 </script>
 

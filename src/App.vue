@@ -1,5 +1,6 @@
 <template>
   <div class="">
+    <loading v-if="loading" />
     <div class="app">
       <navigation v-if="!hideNav"/>
       <router-view/>
@@ -11,6 +12,9 @@
 <script>
 import Navigation from '@/components/Navigation.vue'
 import TheFooter from '@/components/Footer.vue'
+import Loading from '@/components/Loading.vue'
+import { auth } from "./firebase/firebaseinit";
+import { onAuthStateChanged } from 'firebase/auth';
 
 
 
@@ -19,19 +23,33 @@ export default {
   components: { 
     Navigation,
     TheFooter,
+    Loading
   },
 
   data () {
     return {
       hideNav: null,
+      loading: null,
     }
   },
 
   created (){
     this.checkRoute();
+    onAuthStateChanged(auth, async (user) =>{
+      this.loading = true;
+      await this.$store.commit("updateUser", user);
+      this.loading = false;
+      if(user){
+        // this.loading = true;
+        await this.$store.dispatch("getCurrentUser", user);
+        this.loading = false;
+      }
+    })
   },
 
-  mounted() {},
+  mounted() {
+    
+  },
 
   watch: {
     $route() {

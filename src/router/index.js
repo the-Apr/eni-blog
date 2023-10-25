@@ -6,6 +6,8 @@ import Login from '../views/Login.vue'
 // import Register from '../views/Register.vue'
 const Register = () => import('../views/Register.vue')
 const ForgotPassword = () => import('../views/ForgotPassword.vue')
+const Profile = ()  => import('../views/Profile.vue')
+const Admin = ()  => import('../views/Admin.vue')
 
 const routes = [
   {
@@ -46,6 +48,22 @@ const routes = [
     component: ForgotPassword,
     meta: {
       title: "Forgot Password"
+    }
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+    meta: {
+      title: "Admin"
+    }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: {
+      title: "Profile"
     }
   },
 ];

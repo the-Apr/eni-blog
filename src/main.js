@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import './assets/tailwind.css'
+import { auth } from "./firebase/firebaseinit";
+import { onAuthStateChanged } from 'firebase/auth';
 
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -14,9 +16,15 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fas, far, fab)
 
-const app= createApp(App)
-app.use(store)
-app.use(router)
-app.component('fa-icon', FontAwesomeIcon)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(store);
+app.use(router);
+
+app.component('fa-icon', FontAwesomeIcon);
+
+onAuthStateChanged(auth, () => {
+  if (!app.mounted) {
+    app.mount('#app');
+  }
+});

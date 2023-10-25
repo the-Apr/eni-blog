@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import { auth } from "../firebase/firebaseinit";
+import { auth, db } from "../firebase/firebaseinit";
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 export default {
   name: "Register",
@@ -57,7 +57,8 @@ export default {
       email: "",
       password: "",
       error: null,
-      errorMsg: ""
+      errorMsg: "",
+      id: null
     }
   },
 
@@ -72,40 +73,39 @@ export default {
       ) {
         this.error = false;
         this.errorMsg = "";
-        // const firebaseAuth = await firebaseApp.auth();
-        // const auth = getAuth()
-        const createUser = await createUserWithEmailAndPassword(auth, this.email, this.password);
-        const result = await createUser;
-        // const dataBase = db.collection('users').doc(result.user.uid);
-        // await dataBase.set({
-        //   firstName: this.firstName,
-        //   lastName: this.firstName,
-        //   username: this.username,
-        //   email: this.email,
+        
+        try { 
+          const createUser = await createUserWithEmailAndPassword(auth, this.email, this.password);
+          const result = await createUser;
+          // console.log(result.user.uid)
 
-        // Initialize the Firestore database
-        const db = getFirestore();
+          // Reference to the 'users' collection
+          const usersCollection = collection(db, "users");
 
-        // Reference to the 'users' collection
-        const usersCollection = collection(db, "users");
+          // Reference to the document using the user's UID
+          const userDoc = doc(usersCollection, result.user.uid);
 
-        // Reference to the document using the user's UID
-        const userDoc = doc(usersCollection, result.user.uid);
+          // Set document data
+          await setDoc(userDoc, {
+            id: result.user.uid,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            username: this.username,
+            email: this.email,
+          });
 
-        // Set document data
-        await setDoc(userDoc, {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          username: this.username,
-          email: this.email,
-        });
-
-        this.$router.push({name:"Home"})
-        return;
-      }
-      this.error = true;
-      this.errorMsg = "Please fill out all the fields";
-      return;
+          this.$router.push({name:"Home"})
+          return;
+          
+        } catch (error) {
+          console.error("Error while creating user or setting document data:", error);
+          this.error = true;
+          this.errorMsg = "An error occurred while creating the user.";
+        }
+      } else {
+          this.error = true;
+          this.errorMsg = "Please fill out all the fields";
+        }
     }
   }
 }

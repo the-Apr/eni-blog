@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <blog-post :post= "welcomeScreen"/>
+    <blog-post v-if="!user" :post= "welcomeScreen"/>
     <blog-post :post= "post" v-for="(post, index) in sampleBlogPost" :key="index"/>
     <div class="blog-card-wrap">
       <div class="md:container">
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="updates">
+    <div v-if="!user" class="updates ">
       <div class="container box">
         <h2>never miss a post. Register for your account today</h2>
         <a class="router-button" to="#">
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       welcomeScreen: {
-        title: "Welcome",
+        title: "Welocme,",
         blogPost: "Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post",
         welcomeScreen: true,
         photo: "setup",
@@ -59,6 +59,9 @@ export default {
   computed: {
     sampleBlogCards() {
       return this.$store.state.sampleBlogCards;
+    },
+    user() {
+      return this.$store.state.user
     }
   }
 }

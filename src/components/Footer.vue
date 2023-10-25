@@ -50,6 +50,9 @@ export default {
     admin() {
       return this.$store.state.profileAdmin;
     },
+    user() {
+      return this.$store.state.user
+    }
   },
 };
 </script>
@@ -100,6 +103,10 @@ footer {
         gap: 16px;
         list-style: none;
         display: flex;
+
+        a{
+          color: #fff;
+        }
       }
 
       .col-1,
