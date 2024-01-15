@@ -48,7 +48,7 @@ export default {
         this.$router.push({name: "Home"})
         this.error = false;
         this.errorMsg = "";
-        console.log(auth.currentUser.uid);
+        // console.log(auth.currentUser.uid);
       }). catch(err => {
         this.error = true;
         this.errorMsg = err.message; 
@@ -176,9 +176,11 @@ export default {
     background-image: url("../assets/think diff.jpg");
     width: 100%;
     height: 100%;
+    max-height: 100%;
 
     @screen lg{
       display: initial;
+    
     }
   }
 }
