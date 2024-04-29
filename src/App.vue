@@ -38,11 +38,13 @@ export default {
     onAuthStateChanged(auth, async (user) =>{
       this.loading = true;
       await this.$store.commit("updateUser", user);
+      
       this.loading = false;
       if(user){
         // this.loading = true;
         await this.$store.dispatch("getCurrentUser", user);
         this.loading = false;
+        
       }
     })
   },
